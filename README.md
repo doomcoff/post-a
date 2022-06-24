@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `posta` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-# table posta.envelope (конверты)
+--table posta.envelope (конверты)
 CREATE TABLE IF NOT EXISTS `envelope` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `id_resval` int(10) NOT NULL DEFAULT '0',
