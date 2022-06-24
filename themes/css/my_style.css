@@ -1,0 +1,80 @@
+
+@font-face {
+font-family: 'BebasNeue';
+src: url('../fonts/bebasneue.eot');
+src: url('../fonts/bebasneue.eot?#iefix') format('embedded-opentype'),
+url('../fonts/bebasneue.woff2') format('woff2'),
+url('../fonts/bebasneue.woff') format('woff'),
+url('../fonts/bebasneue.ttf') format('truetype'),
+url('../fonts/bebasneue.svg#BebasNeue') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+
+.jumbotron {
+ border: 1px solid #E2E2E2;
+}
+.m{
+margin-top: 1em;
+}
+.table td,
+.table th{
+/*text-align: center; */
+}
+.btn-icon {
+padding-top: 0;
+padding-bottom: 0;
+padding: 9px 9px;
+margin: 5px 5px;
+text-decoration: none;
+}
+.btn-icon a:hover {
+text-decoration: none;
+}
+.lgi{
+ min-width: 290px;
+ height: 55px;
+ z-index: 90;
+}
+.envbg{
+  background-image: url(envelope.png) bottom center no-repeat;
+}
+#table-footer{
+width: 98%;
+}
+#search{
+ margin-right: 25px;
+ width: 350px;
+}
+.spoiler-btn{
+cursor: pointer;
+}
+.spoiler{
+}
+.form {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.table {
+font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
