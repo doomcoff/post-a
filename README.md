@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `envelope` (
   `nsum` float(10,2) DEFAULT '0.00',
   `one` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)) 
-  ENGINE=MyISAM AUTO_INCREMENT=13028 DEFAULT CHARSET=utf8;
+  ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ----- table posta.resvalue (склад)
 CREATE TABLE IF NOT EXISTS `resvalue` (
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `resvalue` (
   `datestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `dates` date DEFAULT NULL,
   `user` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;
  
 ---- table posta.resvalue_log (логи действий)
 CREATE TABLE IF NOT EXISTS `resvalue_log` (
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `resvalue_log` (
   `name_proc` varchar(255) DEFAULT NULL,
   `operation_user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)) 
-  ENGINE=MyISAM AUTO_INCREMENT=5242 DEFAULT CHARSET=utf8;
+  ENGINE=MyISAM DEFAULT CHARSET=utf8;
   
 ---- table posta.stamp (марки)
 CREATE TABLE IF NOT EXISTS `stamp` (
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `stamp` (
   `res_clv` int(10) DEFAULT NULL,
   `dates` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)) 
-ENGINE=MyISAM AUTO_INCREMENT=3077 DEFAULT CHARSET=utf8;
+ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -----table posta.users (пользователи)
 CREATE TABLE IF NOT EXISTS `users` (
@@ -77,12 +77,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `utif` varchar(10) NOT NULL,
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --- view posta.envelope_clv (представления, конверты количество, суммы)
-
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `envelope_clv` AS select date_format(`envelope`.`d_isx`,'%m') AS `m`,date_format(`envelope`.`d_isx`,'%Y') AS `y`,`envelope`.`id_resval` AS `id_resval`,`resvalue`.`cut_name` AS `cut_name`,`resvalue`.`full_name` AS `full_name`,sum(`envelope`.`one`) AS `clv`,(sum(`envelope`.`one`) * `resvalue`.`one_sum`) AS `s` from (`envelope` left join `resvalue` on((`envelope`.`id_resval` = `resvalue`.`id`))) group by date_format(`envelope`.`d_isx`,'%Y-%m'),`resvalue`.`cut_name`,`envelope`.`id_resval`,`resvalue`.`full_name` order by date_format(`envelope`.`d_isx`,'%Y-%m');
-
 
 -----view posta.envelope_sum (представления, конверты суммированные данные)
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `envelope_sum` AS select `envelope`.`id_resval` AS `id_resval`,`resvalue`.`cut_name` AS `cut_name`,`resvalue`.`full_name` AS `full_name`,sum(`envelope`.`one`) AS `clv`,`resvalue`.`value_k` AS `value_k`,(`resvalue`.`value_k` - sum(`envelope`.`one`)) AS `sk`,`resvalue`.`value` AS `value` from (`envelope` left join `resvalue` on((`envelope`.`id_resval` = `resvalue`.`id`))) group by `resvalue`.`cut_name`,`envelope`.`id_resval`,`resvalue`.`full_name` order by 1;
